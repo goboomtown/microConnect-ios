@@ -1,4 +1,4 @@
-# Boomtown microConnect for iOS (v.1)
+# Boomtown microConnect for iOS (v.1.2)
 
 #### Minmum Requirements
 - Xcode 7.2

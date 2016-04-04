@@ -38,53 +38,60 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 	self.storyboardHelpButton.memberUserID      = memberUserID;
     self.storyboardHelpButton.memberLocationID  = memberLocationID;
 	
-    self.storyboardHelpButton.supportWebsiteURL   = @"http://example.com";
+    self.storyboardHelpButton.supportWebsiteURL   = [NSURL URLWithString:@"http://example.com"];
     self.storyboardHelpButton.supportEmailAddress = @"support@example.com";
     self.storyboardHelpButton.supportPhoneNumber  = @"1-888-555-2368";
+	
+	self.programmaticHelpButton = [[BTConnectHelpButton alloc] initWithFrame:self.view.frame];
+	self.programmaticHelpButton.delegate = self;
+	
+	self.programmaticHelpButton.memberID           	= memberID;
+	self.programmaticHelpButton.memberUserID      	= memberUserID;
+	self.programmaticHelpButton.memberLocationID 	= memberLocationID;
+	
+	self.programmaticHelpButton.supportWebsiteURL 	= [NSURL URLWithString:@"http://example.com"];
+	self.programmaticHelpButton.supportEmailAddress = @"support@example.com";
+	self.programmaticHelpButton.supportPhoneNumber 	= @"1-888-555-2368";
+	[self.programmaticHelpButton setCredentialsWithToken:apiToken secret:apiSecret];
+	[self.view addSubview:self.programmaticHelpButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.programmaticHelpButton = [[BTConnectHelpButton alloc] initWithFrame:self.subview.frame];
-    self.programmaticHelpButton.delegate = self;
-    
-    self.programmaticHelpButton.memberID           	= memberID;
-	self.programmaticHelpButton.memberUserID      	= memberUserID;
-    self.programmaticHelpButton.memberLocationID 	= memberLocationID;
-	
-    self.programmaticHelpButton.supportWebsiteURL 	= @"http://example.com";
-    self.programmaticHelpButton.supportEmailAddress = @"support@example.com";
-    self.programmaticHelpButton.supportPhoneNumber 	= @"1-888-555-2368";
-    [self.programmaticHelpButton setCredentialsWithToken:apiToken secret:apiSecret];
-    [self.view addSubview:self.programmaticHelpButton];
 }
 
 
 #pragma mark - Help button delegates
 
-- (void) helpButton:(nonnull id)helpButton  displayHelpActionSheet:(nonnull UIAlertController *)alertController
+- (void) helpButton:(nonnull BTConnectHelpButton *)helpButton  displayHelpActionSheet:(nonnull UIAlertController *)alertController
 {
-	[self.navigationController presentViewController:alertController animated:YES completion:nil];
+    if ( self.view.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassCompact )
+    {
+		UIPopoverPresentationController *popPresenter = [alertController
+														 popoverPresentationController];
+		popPresenter.sourceView = helpButton;
+		popPresenter.sourceRect = helpButton.bounds;
+		[self presentViewController:alertController animated:YES completion:nil];
+	}
+	else
+	{
+		[self.navigationController presentViewController:alertController animated:YES completion:nil];
+	}
 }
 
 
-- (void) helpButton:(id)helpButton displayIssueViewController:(UIViewController *)viewController
+- (void) helpButton:(nonnull BTConnectHelpButton *)helpButton displayIssueViewController:(UIViewController *)viewController
 {
 	[self.navigationController pushViewController:viewController animated:YES];
 }
 
 
-- (void) helpButton:(id)helpButton alertWithMessage:(NSString *)message
+- (void) helpButton:(nonnull BTConnectHelpButton *)helpButton didFailWithError:(nonnull NSError *)error
 {
-	NSLog(@"%@", message);
+	NSLog(@"%@: %@", error.localizedDescription, error.localizedFailureReason);
 }
 
 
-- (void) helpButton:(nonnull id)helpButton authorizationFailedWithStatus:(nonnull NSNumber *)status message:(nonnull NSString *)message
-{
-	NSLog(@"%@", message);
-}
 
 
 @end

@@ -29,7 +29,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 			storyboardHelpButton.memberUserID      	= memberUserID
             storyboardHelpButton.memberLocationID  	= memberLocationID
 			
-            storyboardHelpButton.supportWebsiteURL 	 = "http://example.com"
+			storyboardHelpButton.supportWebsiteURL 	 = NSURL(string: "http://example.com");
             storyboardHelpButton.supportEmailAddress = "support@example.com"
             storyboardHelpButton.supportPhoneNumber  = "1-888-555-2368"
         }
@@ -37,14 +37,14 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
     
     lazy var programmaticHelpButton: BTConnectHelpButton = {
         [unowned self] in
-        let button = BTConnectHelpButton(frame: self.subview.frame)
+        let button = BTConnectHelpButton(frame: self.view.frame)
         button.delegate = self
         
         button.memberID          = memberID
         button.memberUserID      = memberUserID
 		button.memberLocationID  = memberLocationID
 
-		button.supportWebsiteURL   = "http://example.com"
+		button.supportWebsiteURL   =  NSURL(string: "http://example.com");
         button.supportEmailAddress = "support@example.com"
         button.supportPhoneNumber  = "1-888-555-2368"
         
@@ -57,27 +57,34 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         super.viewDidLoad()
         
         title = "Boomtown Sample App"
+		self.view.addSubview(programmaticHelpButton)
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        view.addSubview(programmaticHelpButton)
     }
 
-	func helpButton(helpButton: AnyObject, displayIssueViewController viewController: UIViewController) {
+	func helpButton(helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
 		navigationController?.pushViewController(viewController, animated: true)
 	}
 
-	func helpButton(helpButton: AnyObject, displayHelpActionSheet alertController: UIAlertController) {
-		navigationController?.presentViewController(alertController, animated: true, completion:nil)
+	func helpButton(helpButton: BTConnectHelpButton, displayHelpActionSheet alertController: UIAlertController) {
+        if ( self.view.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClass.Compact )
+		{
+			let popover = alertController.popoverPresentationController
+			popover?.sourceView = helpButton
+			popover?.sourceRect = helpButton.bounds
+			
+			presentViewController(alertController, animated: true, completion: nil)
+		}
+		else
+		{
+			navigationController?.presentViewController(alertController, animated: true, completion:nil)
+		}
 	}
 	
-	func helpButton(helpButton: AnyObject, authorizationFailedWithStatus status: NSNumber, message: String) {
-		NSLog("%@", message)
-	}
-	
-	func helpButton(helpButton: AnyObject, alertWithMessage message: String?) {
-		NSLog("Missing information")
+	func helpButton(helpButton: BTConnectHelpButton, didFailWithError error: NSError) {
+		NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
 	}
 	
 }
