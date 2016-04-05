@@ -92,6 +92,12 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 }
 
 
+- (void) helpButton:(nonnull BTConnectHelpButton *)helpButton didSetCredentials:(nullable id)object
+{
+    NSLog(@"Everything is ready to proceed.");
+}
+
+
 
 
 @end

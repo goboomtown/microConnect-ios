@@ -36,6 +36,13 @@ extern NSString  *const _Nonnull BTConnectHelpErrorDomain;
 
 @optional
 
+/**
+ Called when the credentials have been successfully set and we are ready to proceed
+ 
+ The returned parameter on didSetCredentials is unused
+ */
+- (void)helpButton:(nonnull BTConnectHelpButton *)helpButton didSetCredentials:(nullable id)object;
+
 @end
 
 

@@ -87,4 +87,8 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 		NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
 	}
 	
+    func helpButton(helpButton: BTConnectHelpButton, didSetCredentials object:AnyObject?) {
+        NSLog("Everything is ready to proceed.")
+    }
+    
 }
