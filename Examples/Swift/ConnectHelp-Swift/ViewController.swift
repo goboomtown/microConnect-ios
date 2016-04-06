@@ -64,30 +64,23 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         super.viewDidAppear(animated)
     }
 
-	func helpButton(helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
-		navigationController?.pushViewController(viewController, animated: true)
-	}
+    func helpButton(helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
+        showViewController(viewController, sender: helpButton)
+    }
 
-	func helpButton(helpButton: BTConnectHelpButton, displayHelpActionSheet alertController: UIAlertController) {
-        if ( self.view.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClass.Compact )
-		{
-			let popover = alertController.popoverPresentationController
-			popover?.sourceView = helpButton
-			popover?.sourceRect = helpButton.bounds
-			
-			presentViewController(alertController, animated: true, completion: nil)
-		}
-		else
-		{
-			navigationController?.presentViewController(alertController, animated: true, completion:nil)
-		}
+    func helpButton(helpButton: BTConnectHelpButton, displayHelpActionSheet alertController: UIAlertController) {
+        presentViewController(alertController, animated: true, completion: nil)
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = helpButton
+            popoverController.sourceRect = helpButton.bounds
+        }
 	}
 	
-	func helpButton(helpButton: BTConnectHelpButton, didFailWithError error: NSError) {
+    func helpButton(helpButton: BTConnectHelpButton, didFailWithError error: NSError) {
 		NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
-	}
+    }
 	
-    func helpButton(helpButton: BTConnectHelpButton, didSetCredentials object:AnyObject?) {
+    func helpButtonDidSetCredentials(helpButton: BTConnectHelpButton) {
         NSLog("Everything is ready to proceed.")
     }
     

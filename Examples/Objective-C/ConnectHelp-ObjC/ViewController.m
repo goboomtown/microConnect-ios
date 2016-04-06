@@ -67,11 +67,11 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 {
     if ( self.view.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassCompact )
     {
+        [self presentViewController:alertController animated:YES completion:nil];
 		UIPopoverPresentationController *popPresenter = [alertController
 														 popoverPresentationController];
 		popPresenter.sourceView = helpButton;
 		popPresenter.sourceRect = helpButton.bounds;
-		[self presentViewController:alertController animated:YES completion:nil];
 	}
 	else
 	{
@@ -92,7 +92,7 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 }
 
 
-- (void) helpButton:(nonnull BTConnectHelpButton *)helpButton didSetCredentials:(nullable id)object
+- (void) helpButtonDidSetCredentials:(nonnull BTConnectHelpButton *)helpButton
 {
     NSLog(@"Everything is ready to proceed.");
 }
