@@ -10,18 +10,18 @@ import UIKit
 import BTConnectHelp
 
 let apiToken            = "__API_TOKEN__"
-let apiSecret 			= "__API_SECRET_KEY__"
+let apiSecret           = "__API_SECRET_KEY__"
 
-let memberID           	= "__MEMBERS_ID__"
-let memberUserID     	= "__MEMBERS_USERS_ID__"
-let memberLocationID 	= "__MEMBERS_LOCATIONS_ID__"
+let memberID            = "__MEMBERS_ID__"
+let memberUserID        = "__MEMBERS_USERS_ID__"
+let memberLocationID    = "__MEMBERS_LOCATIONS_ID__"
 
 class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 
     @IBOutlet weak var subview: UIView!
     @IBOutlet weak var storyboardHelpButton: BTConnectHelpButton! {
         didSet {
-			storyboardHelpButton.setCredentialsWithToken(apiToken, secret: apiSecret)
+            storyboardHelpButton.setCredentialsWithToken(apiToken, secret: apiSecret)
 			
             storyboardHelpButton.delegate = self
             
@@ -29,7 +29,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 			storyboardHelpButton.memberUserID      	= memberUserID
             storyboardHelpButton.memberLocationID  	= memberLocationID
 			
-			storyboardHelpButton.supportWebsiteURL 	 = NSURL(string: "http://example.com");
+            storyboardHelpButton.supportWebsiteURL 	 = NSURL(string: "http://example.com");
             storyboardHelpButton.supportEmailAddress = "support@example.com"
             storyboardHelpButton.supportPhoneNumber  = "1-888-555-2368"
         }
@@ -42,13 +42,13 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         
         button.memberID          = memberID
         button.memberUserID      = memberUserID
-		button.memberLocationID  = memberLocationID
+        button.memberLocationID  = memberLocationID
 
-		button.supportWebsiteURL   =  NSURL(string: "http://example.com");
+        button.supportWebsiteURL   =  NSURL(string: "http://example.com");
         button.supportEmailAddress = "support@example.com"
         button.supportPhoneNumber  = "1-888-555-2368"
         
-		button.setCredentialsWithToken(apiToken, secret: apiSecret)
+        button.setCredentialsWithToken(apiToken, secret: apiSecret)
 		
         return button
     }()
@@ -57,7 +57,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         super.viewDidLoad()
         
         title = "Boomtown Sample App"
-		self.view.addSubview(programmaticHelpButton)
+        self.view.addSubview(programmaticHelpButton)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -77,7 +77,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 	}
 	
     func helpButton(helpButton: BTConnectHelpButton, didFailWithError error: NSError) {
-		NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
+        NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
     }
 	
     func helpButtonDidSetCredentials(helpButton: BTConnectHelpButton) {
