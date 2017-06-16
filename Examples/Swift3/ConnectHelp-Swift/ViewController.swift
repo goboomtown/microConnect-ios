@@ -49,7 +49,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         button.supportPhoneNumber  = "1-888-555-2368"
         
         button.setCredentialsWithToken(apiToken, secret: apiSecret)
-		
+        
         return button
     }()
     
