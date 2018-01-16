@@ -29,7 +29,7 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 			storyboardHelpButton.memberUserID      	= memberUserID
             storyboardHelpButton.memberLocationID  	= memberLocationID
 			
-            storyboardHelpButton.supportWebsiteURL 	 = NSURL(string: "http://example.com");
+            storyboardHelpButton.supportWebsiteURL 	 = NSURL(string: "http://example.com") as URL?;
             storyboardHelpButton.supportEmailAddress = "support@example.com"
             storyboardHelpButton.supportPhoneNumber  = "1-888-555-2368"
         }
@@ -44,11 +44,13 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         button.memberUserID      = memberUserID
         button.memberLocationID  = memberLocationID
 
-        button.supportWebsiteURL   =  NSURL(string: "http://example.com");
+        button.supportWebsiteURL   =  NSURL(string: "http://example.com") as URL?;
         button.supportEmailAddress = "support@example.com"
         button.supportPhoneNumber  = "1-888-555-2368"
         
         button.setCredentialsWithToken(apiToken, secret: apiSecret)
+        
+        button.advertiseService(withPublicData:["test":"data"], privateData:["test":"private data"])
 		
         return button
     }()
@@ -60,28 +62,44 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         self.view.addSubview(programmaticHelpButton)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
-    func helpButton(helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
-        showViewController(viewController, sender: helpButton)
+    func helpButton(_ helpButton: BTConnectHelpButton, didAdvertiseService service: NetService) {
+        NSLog("didAdvertiseService")
+    }
+    
+    func helpButton(_ helpButton: BTConnectHelpButton, didFailToAdvertiseService errorDict: [String : NSNumber]) {
+        NSLog("didFailToAdvertiseService")
+    }
+    
+    func helpButton(_ helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
+        show(viewController, sender: helpButton)
     }
 
-    func helpButton(helpButton: BTConnectHelpButton, displayHelpActionSheet alertController: UIAlertController) {
-        presentViewController(alertController, animated: true, completion: nil)
+    func helpButton(_ helpButton: BTConnectHelpButton, displayHelpActionSheet alertController: UIAlertController) {
+        present(alertController, animated: true, completion: nil)
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = helpButton
             popoverController.sourceRect = helpButton.bounds
         }
 	}
 	
-    func helpButton(helpButton: BTConnectHelpButton, didFailWithError error: NSError) {
-        NSLog("%@", error.localizedDescription + ":" + error.localizedFailureReason!)
+    func helpButton(_ helpButton: BTConnectHelpButton, didFailWithError error: Error) {
+        NSLog("%@", error.localizedDescription)
+        alert(error.localizedDescription)
     }
 	
-    func helpButtonDidSetCredentials(helpButton: BTConnectHelpButton) {
+    func helpButtonDidSetCredentials(_ helpButton: BTConnectHelpButton) {
         NSLog("Everything is ready to proceed.")
+    }
+    
+    func alert(_ message: String) {
+        let alertController = UIAlertController.init(title: "Warning!", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
 }

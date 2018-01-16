@@ -54,6 +54,10 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 	self.programmaticHelpButton.supportPhoneNumber 	= @"1-888-555-2368";
 	[self.programmaticHelpButton setCredentialsWithToken:apiToken secret:apiSecret];
 	[self.view addSubview:self.programmaticHelpButton];
+    
+    [self.programmaticHelpButton advertiseServiceWithPublicData:@{@"test":@"data"}
+                                                    privateData:@{@"test":@"private data"}];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -62,6 +66,20 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 
 
 #pragma mark - Help button delegates
+
+- (void) helpButton:(BTConnectHelpButton *)helpButton didAdvertiseService:(NSNetService *)netService
+{
+    NSLog(@"mDNS service successfully advertised.");
+}
+
+
+- (void) helpButton:(BTConnectHelpButton *)helpButton didFailToAdvertiseService:(NSDictionary<NSString *,NSNumber *> *)errorDict
+{
+    NSLog(@"mDNS service failed to advertise.");
+}
+
+
+
 
 - (void) helpButton:(nonnull BTConnectHelpButton *)helpButton  displayHelpActionSheet:(nonnull UIAlertController *)alertController
 {
@@ -89,6 +107,7 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 - (void) helpButton:(nonnull BTConnectHelpButton *)helpButton didFailWithError:(nonnull NSError *)error
 {
 	NSLog(@"%@: %@", error.localizedDescription, error.localizedFailureReason);
+    [self alert:error.localizedDescription];
 }
 
 
@@ -98,6 +117,20 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 }
 
 
+- (void) alert:(NSString *)message {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning!"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                          }];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:^{
+    }];
+}
 
 
 @end

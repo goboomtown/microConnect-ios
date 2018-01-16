@@ -1,0 +1,72 @@
+//
+//  ChatViewController.h
+//  BoomtownMember
+//
+//  Created by Larry Borsato on 2015-10-27.
+//  Copyright © 2015 BOOMTOWN. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "BoomtownChat.h"
+#import "BTConnectAPI.h"
+#import "BTConnectMember.h"
+#import "BTConnectIssue.h"
+#import "BTConnectChat.h"
+#import "XMPP.h"
+#import "JSQMessages.h"
+#import "AutocompletionTableView.h"
+//
+//#ifdef EMBED
+//#import "BoomtownChat.h"
+////#import "BoomtownAPI.h"
+//#import "XMPP.h"
+//#import "JSQMessagesViewController.h"
+//#import "JSQMessages.h"
+//#else
+//#import <BoomtownChat/BoomtownChat.h>
+//#import <BoomtownAPI/BoomtownAPI.h>
+//#import <XMPPFramework/XMPP.h>
+//#import <JSQMessagesViewController/JSQMessagesViewController.h>
+//#import <JSQMessagesViewController/JSQMessages.h>
+//#endif
+//#import "AutocompletionTableView.h"
+//#import "LogoDescriptionView.h"
+
+@class ChatViewController;
+
+@protocol JSQDemoViewControllerDelegate <NSObject>
+
+- (void)didDismissJSQDemoViewController:(ChatViewController *)vc;
+
+@end
+
+@interface ChatViewController : BTMessagesViewController <UITextFieldDelegate, BoomtownChatDelegate, UIActionSheetDelegate, AutocompletionTableViewDelegate>
+
+@property (strong, nonatomic)	NSString			*muc;
+@property (strong, nonatomic)	NSString			*jid;
+@property (strong, nonatomic)	NSString			*password;
+@property (strong, nonatomic)	NSString			*host;
+@property (strong, nonatomic)	NSString			*port;
+@property (strong, nonatomic)	NSString			*resource;
+@property (strong, nonatomic)	NSString			*participantId;
+
+@property (strong, nonatomic)   NSString			*nickname;
+@property (strong, nonatomic)	BTConnectChat        *chatRecord;
+
+@property (strong, nonatomic) BTConnectIssue *issue;
+
+@property (weak, nonatomic) id<JSQDemoViewControllerDelegate> delegateModal;
+
+//@property (strong, nonatomic)    BoomtownPartner        *provider;
+//@property (strong, nonatomic)    LogoDescriptionView    *logoDescriptionView;
+
+@property						BOOL				inRoom;
+
+- (void) 			buddyOffline:(NSString *)user;
+- (void) 			buddyOnline:(NSString *)user;
+- (void) 			clearMessages;
+- (instancetype)	init;
+- (instancetype)	initWithSize:(CGSize)size landscapeSize:(CGSize)landscapeSize;
+
+
+@end
