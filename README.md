@@ -1,8 +1,15 @@
-# Boomtown microConnect for iOS (v.1.2)
+# Boomtown microConnect for iOS (v 2.0)
 
-#### Minmum Requirements
-- Xcode 7.2
-- iOS 8.0
+#### Minimum Requirements
+- Xcode 10.2
+- iOS 9.0
+
+#### Dependencies
+-	AFNetworking 3.0
+-	XMPPFramework 4.0
+-	SVProgressHUD
+
+A Podfile is included in case you want to use CocoaPods to include these dependencies.
 
 ## Overview
 **microConnect-ios** contains `BTConnectHelp`, an iOS framework for [Connect][connectLink] partners. It allows partners to integrate issue creation, notification, and chat in a single `BTConnectHelpButton` button.
