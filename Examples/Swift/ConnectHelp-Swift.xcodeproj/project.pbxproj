@@ -14,6 +14,7 @@
 		C9B4AA0B1C9C4F1B0025885C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9B4AA091C9C4F1B0025885C /* LaunchScreen.storyboard */; };
 		C9B4AA1F1C9C7EFB0025885C /* BTConnectHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4AA1E1C9C7EFB0025885C /* BTConnectHelp.framework */; };
 		C9B4AA201C9C7EFB0025885C /* BTConnectHelp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9B4AA1E1C9C7EFB0025885C /* BTConnectHelp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FFE453D972E968F4521924F2 /* Pods_ConnectHelp_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F00E9EC59EA685ADAD48E67 /* Pods_ConnectHelp_Swift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F00E9EC59EA685ADAD48E67 /* Pods_ConnectHelp_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConnectHelp_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B4A9FD1C9C4F1B0025885C /* ConnectHelp-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ConnectHelp-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9B4AA001C9C4F1B0025885C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9B4AA021C9C4F1B0025885C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,8 @@
 		C9B4AA0A1C9C4F1B0025885C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9B4AA0C1C9C4F1B0025885C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9B4AA1E1C9C7EFB0025885C /* BTConnectHelp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BTConnectHelp.framework; sourceTree = "<group>"; };
+		E65C162C37981ADFAF525F1B /* Pods-ConnectHelp-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConnectHelp-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConnectHelp-Swift/Pods-ConnectHelp-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		F3ACA951CB055969DD408852 /* Pods-ConnectHelp-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConnectHelp-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConnectHelp-Swift/Pods-ConnectHelp-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,18 +51,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9B4AA1F1C9C7EFB0025885C /* BTConnectHelp.framework in Frameworks */,
+				FFE453D972E968F4521924F2 /* Pods_ConnectHelp_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		898BFACC7D0F803017F130D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3ACA951CB055969DD408852 /* Pods-ConnectHelp-Swift.debug.xcconfig */,
+				E65C162C37981ADFAF525F1B /* Pods-ConnectHelp-Swift.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C9B4A9F41C9C4F1B0025885C = {
 			isa = PBXGroup;
 			children = (
 				C9B4A9FF1C9C4F1B0025885C /* ConnectHelp-Swift */,
 				C9B4A9FE1C9C4F1B0025885C /* Products */,
 				C9B4AA1E1C9C7EFB0025885C /* BTConnectHelp.framework */,
+				898BFACC7D0F803017F130D4 /* Pods */,
+				ED5B4D714B85CFBCFD7A8614 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +99,14 @@
 			path = "ConnectHelp-Swift";
 			sourceTree = "<group>";
 		};
+		ED5B4D714B85CFBCFD7A8614 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F00E9EC59EA685ADAD48E67 /* Pods_ConnectHelp_Swift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -90,10 +114,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9B4AA0F1C9C4F1B0025885C /* Build configuration list for PBXNativeTarget "ConnectHelp-Swift" */;
 			buildPhases = (
+				1447896DDFE44DB9564CBD24 /* [CP] Check Pods Manifest.lock */,
 				C9B4A9F91C9C4F1B0025885C /* Sources */,
 				C9B4A9FA1C9C4F1B0025885C /* Frameworks */,
 				C9B4A9FB1C9C4F1B0025885C /* Resources */,
 				C9B4AA151C9C5A220025885C /* Embed Frameworks */,
+				316388A8DD6F81B749CD5BB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -116,7 +142,7 @@
 				TargetAttributes = {
 					C9B4A9FC1C9C4F1B0025885C = {
 						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 0800;
+						DevelopmentTeam = 2CSY99ZJ94;
 					};
 				};
 			};
@@ -125,6 +151,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -150,6 +177,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1447896DDFE44DB9564CBD24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ConnectHelp-Swift-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		316388A8DD6F81B749CD5BB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ConnectHelp-Swift/Pods-ConnectHelp-Swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ConnectHelp-Swift/Pods-ConnectHelp-Swift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9B4A9F91C9C4F1B0025885C /* Sources */ = {
@@ -268,36 +354,42 @@
 		};
 		C9B4AA101C9C4F1B0025885C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3ACA951CB055969DD408852 /* Pods-ConnectHelp-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2CSY99ZJ94;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "ConnectHelp-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.goboomtown.Examples.ConnectHelp.ConnectHelp-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		C9B4AA111C9C4F1B0025885C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E65C162C37981ADFAF525F1B /* Pods-ConnectHelp-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2CSY99ZJ94;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "ConnectHelp-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.goboomtown.Examples.ConnectHelp.ConnectHelp-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

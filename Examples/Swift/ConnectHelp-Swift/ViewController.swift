@@ -44,13 +44,11 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         button.memberUserID      = memberUserID
         button.memberLocationID  = memberLocationID
 
-        button.supportWebsiteURL   =  NSURL(string: "http://example.com") as URL?;
+        button.supportWebsiteURL   =  URL(string: "http://example.com")
         button.supportEmailAddress = "support@example.com"
         button.supportPhoneNumber  = "1-888-555-2368"
         
         button.setCredentialsWithToken(apiToken, secret: apiSecret)
-        
-        button.advertiseService(withPublicData:["test":"data"], privateData:["test":"private data"])
 		
         return button
     }()
@@ -66,14 +64,6 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
         super.viewDidAppear(animated)
     }
 
-    func helpButton(_ helpButton: BTConnectHelpButton, didAdvertiseService service: NetService) {
-        NSLog("didAdvertiseService")
-    }
-    
-    func helpButton(_ helpButton: BTConnectHelpButton, didFailToAdvertiseService errorDict: [String : NSNumber]) {
-        NSLog("didFailToAdvertiseService")
-    }
-    
     func helpButton(_ helpButton: BTConnectHelpButton, displayIssueViewController viewController: UIViewController) {
         show(viewController, sender: helpButton)
     }
@@ -88,18 +78,10 @@ class ViewController: UIViewController, BTConnectHelpButtonDelegate {
 	
     func helpButton(_ helpButton: BTConnectHelpButton, didFailWithError error: Error) {
         NSLog("%@", error.localizedDescription)
-        alert(error.localizedDescription)
     }
 	
     func helpButtonDidSetCredentials(_ helpButton: BTConnectHelpButton) {
         NSLog("Everything is ready to proceed.")
-    }
-    
-    func alert(_ message: String) {
-        let alertController = UIAlertController.init(title: "Warning!", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
     
 }

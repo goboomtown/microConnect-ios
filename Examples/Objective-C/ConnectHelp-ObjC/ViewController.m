@@ -107,7 +107,6 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 - (void) helpButton:(nonnull BTConnectHelpButton *)helpButton didFailWithError:(nonnull NSError *)error
 {
 	NSLog(@"%@: %@", error.localizedDescription, error.localizedFailureReason);
-    [self alert:error.localizedDescription];
 }
 
 
@@ -117,20 +116,6 @@ NSString *memberLocationID 	= @"__MEMBERS_LOCATIONS_ID__";
 }
 
 
-- (void) alert:(NSString *)message {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Warning!"
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-                                                            style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                          }];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:^{
-    }];
-}
 
 
 @end
