@@ -1,6 +1,0 @@
-framework module BTConnectHelp {
-  umbrella header "BTConnectHelp.h"
-
-  export *
-  module * { export * }
-}
